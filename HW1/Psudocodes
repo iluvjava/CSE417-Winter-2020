@@ -1,0 +1,23 @@
+Queue M_Free;
+Map<int, NodeM> M_Table;
+
+while M_Free not Empty:
+    m = M_Free.pop()
+    while !m.propose_topchoice():
+        pass
+    new_free_m_id = m.match_to_its_current_topchoice()
+    M_free.enqeue(new_free_m_id)
+
+class NodeM:
+    fields:
+        * A reference table for all w.
+        * A reference table for all m.
+        * an ID of the m
+    method: propose_topchoice()
+        return: false if rejected, true if accepted.
+    method: engage_to_its_topchoice()
+        match current m to its top choice w, increment the counter.
+        return:
+            None if the w they engaged doesn't have previous partner
+            else
+                the id of their previously engaged partner.
