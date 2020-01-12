@@ -86,17 +86,25 @@ def convert(M: List[List[int]]):
     ...
     >>> convert([[2, 0, 1], [0, 2, 2], [1, 0, 2]])
     """
-    output = [[I, [], None] for I in M]
-    for r in range(len(output)):
-        preference_List = output[r][0]
-        reverse_Index_Map = dict()
-        for I in range(len(preference_List)):
-            assert preference_List[I] not in reverse_Index_Map.keys(), "Repeated Elements in Preference List."
-            assert preference_List[I] < len(M) and preference_List[I] >= 0, "Invalid element in Preference List."
-            reverse_Index_Map[preference_List[I]] = I
-        output[r][1] = reverse_Index_Map
+    output = [[I, bijective_convert(I), None] for I in M]
     return output
 
+def bijective_convert(arr: List[int])-> List[int]:
+    """
+    Function takes in an array with ints, ranging from 0 to n-1, without repeating elements.
+    :param arr:
+        int array.
+    :return:
+        arr such that:
+        arr_returned[I] returns the position of I inside arr.
+    >>> bijective_convert([2, 0, 1])
+    """
+    res = [None]*len(arr)
+    for V, I in zip(arr, range(len(arr))):
+        assert res[V] is None, "Repeated element in preference list. "
+        assert V < len(res) and V >= 0, "Invalid value in the preference list. "
+        res[V] = I
+    return res
 
 class NodeM:
     """
@@ -172,9 +180,9 @@ class NodeM:
 
 
 if __name__ == "__main__":
-    # print("...")
-    # import doctest
-    # doctest.testmod()
+    print("...")
+    import doctest
+    doctest.testmod()
 
     print("Try and construct an example for testing the NodeM class. ")
     M = [[1, 0], [1, 0]]
