@@ -7,12 +7,24 @@ algorithm, problem 4.
 
 It needs python 3.6 or above to run.
 
+* The core part is: the "produce_stable_match(M, W)" function.
+
+Here is the console outputs produced when running it with the given example:
+------------------------------------------------------------------------------------------------------------------------
+3 proposes to 0: [0,-1] Accepted
+2 proposes to 0: [0,3] Accepted
+3 proposes to 1: [1,-1] Accepted
+1 proposes to 0: [0,2] Rejected
+1 proposes to 1: [1,3] Rejected
+1 proposes to 3: [3,-1] Accepted
+0 proposes to 2: [2,-1] Accepted
+Results: [2, 3, 0, 1]
 """
 
 from typing import List
 
 
-def produce_stable_match(M:List[List[int]], W:List[List[int]]):
+def produce_stable_match(M:List[List[int]], W:List[List[int]], verbo=True):
     """
     Function will produce a list of tuple representing the stable matching between the set M, W.
 
@@ -23,6 +35,8 @@ def produce_stable_match(M:List[List[int]], W:List[List[int]]):
     :param W
         A n by n matrix,
         the W th row denotes the preference list of w_i
+    :param verbo:
+        Set to False to stop printing out the trace.
     :return
     A list of tuple in the following format:
     [(m_1, W_1), (m_2, w_2)... (m_n, w_2)],
@@ -34,7 +48,7 @@ def produce_stable_match(M:List[List[int]], W:List[List[int]]):
     M_free = [kv[1] for kv in keypairs]
     while len(M_free) > 0:
         m = M_free.pop()
-        while not m.propose():
+        while not m.propose(verbo=verbo):
             m.increment()
         m = m.engage()
         if m is None:
@@ -103,10 +117,13 @@ class NodeM:
         self.__M = M
         self.__TopChoice = 0
 
-    def propose(self):
+    def propose(self, verbo=True):
         """
             Method will propose to its top choice.
             It will print the trace.
+        :param verbo:
+        Set it to False to stop printing out the trace.
+        Default to True.
         :return:
             True if accepted by top choice.
             False if Rejected by top choice.
@@ -117,13 +134,15 @@ class NodeM:
         trace= f"{self.__ID} proposes to {w}: [{w},{-1 if m_competitor is None else m_competitor}]"
         if m_competitor is None:
             trace += " Accepted"
-            print(trace)
+            if verbo:
+                print(trace)
             return True
         competitor_Rank = self.__W[w][1][m_competitor]
         this_Rank = self.__W[w][1][self.__ID]
         assert competitor_Rank != this_Rank, "Internal error. "
         result = this_Rank < competitor_Rank
-        print(trace + (" Rejected" if not result else " Accepted"))
+        if verbo:
+            print(trace + (" Rejected" if not result else " Accepted"))
         return result
 
 
@@ -185,7 +204,6 @@ if __name__ == "__main__":
             [1, 4, 3, 0, 2],\
             [0, 1, 3, 4, 2],\
         ]
-
     W = [
         [2, 3, 4, 0, 1],\
         [2, 4, 0, 3, 1],\
@@ -194,4 +212,6 @@ if __name__ == "__main__":
         [0, 3, 1, 2, 4]
     ]
     print(f"Result: {produce_stable_match(M, W)}")
-
+    M = [[2, 1, 3, 0], [0, 1, 3, 2], [0, 1, 2, 3], [0, 1, 2, 3]]
+    W = [[0, 2, 1, 3], [2, 0, 3, 1], [3, 2, 1, 0], [2, 3, 1, 0]]
+    print(f"Results: {produce_stable_match(M, W)}")
