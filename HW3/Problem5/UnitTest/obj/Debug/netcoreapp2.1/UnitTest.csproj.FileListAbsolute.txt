@@ -7,8 +7,6 @@ C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\bin\Debug\n
 C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\bin\Debug\netcoreapp2.1\UnitTest.runtimeconfig.dev.json
 C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\bin\Debug\netcoreapp2.1\UnitTest.dll
 C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\bin\Debug\netcoreapp2.1\UnitTest.pdb
-C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\bin\Debug\netcoreapp2.1\Problem5.dll
-C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\bin\Debug\netcoreapp2.1\Problem5.pdb
 C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.csprojAssemblyReference.cache
 C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.csproj.CoreCompileInputs.cache
 C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.AssemblyInfoInputs.cache
@@ -16,3 +14,5 @@ C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\obj\Debug\n
 C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.csproj.CopyComplete
 C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.dll
 C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.pdb
+C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\bin\Debug\netcoreapp2.1\HW3Problem5.dll
+C:\Users\victo\source\repos\CSE417-Winter-2020\HW3\Problem5\UnitTest\bin\Debug\netcoreapp2.1\HW3Problem5.pdb

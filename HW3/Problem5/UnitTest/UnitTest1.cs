@@ -38,26 +38,33 @@ namespace Tests
         [Test]
         public void RandomGraphConnectedComponents()
         {
-            int n = (int)1e+4;
+            TestRandomGraphOnSize();
+        }
+
+        public void TestRandomGraphOnSize(int n = (int)1e4, double range = 6e-4)
+        {
+            int N = 30;
+            double delta = range / N;
+            double[] p = new double[N];
+            for (int I = 0; I < N; I++)
             {
-                var G = KissMe.RandGraph(n, Math.Log(n) / n);
-                var g = new SimpleGraphSearch(G);
-                IDictionary<int, int> d = g.GetComponentSize();
-                foreach (int k in d.Keys)
-                {
-                    WriteLine($"{k}: {d[k]}");
-                }
+                p[I] = Math.Log(n)/n - range + I * delta;
             }
 
+            for (int I = 0; I < p.Length; I++)
             {
-                var G = KissMe.RandGraph(n, Math.Log(n)/n - 1e-4);
+                var G = KissMe.RandGraph(n, p[I]);
                 var g = new SimpleGraphSearch(G);
-                IDictionary<int, int> d = g.GetComponentSize();
-                foreach (int k in d.Keys)
-                {
-                    WriteLine($"{k}: {d[k]}");
-                }
+                var res = g.ProduceStats();
+                string result = $"n= {n}; p = {p[I]}\n";
+                result += $"Total Components: {res[0]}\n";
+                result += $"Component Avg Size: {res[1]}\n";
+                result += $"Max Component Size: {res[2]}\n";
+                result += $"Min Component size: {res[3]}\n";
+                result += $"Component Size SD: {res[4]}\n\n";
+                Write(result);
             }
+
         }
     }
 }

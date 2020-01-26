@@ -8,9 +8,9 @@
     ".NETCoreApp,Version=v2.1": {
       "UnitTest/1.0.0": {
         "dependencies": {
+          "HW3Problem5": "1.0.0",
           "Microsoft.NET.Test.Sdk": "15.8.0",
           "NUnit3TestAdapter": "3.10.0",
-          "Problem5": "1.0.0",
           "NUnit": "3.10.1"
         },
         "runtime": {
@@ -1032,9 +1032,9 @@
           }
         }
       },
-      "Problem5/1.0.0": {
+      "HW3Problem5/1.0.0": {
         "runtime": {
-          "Problem5.dll": {}
+          "HW3Problem5.dll": {}
         }
       }
     }
@@ -1542,7 +1542,7 @@
       "path": "system.xml.xpath.xmldocument/4.3.0",
       "hashPath": "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
     },
-    "Problem5/1.0.0": {
+    "HW3Problem5/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -49,6 +49,16 @@ namespace Problem5
                 }
             return G;
         }
+
+        /// <summary>
+        /// Method will run the using random graph and produce 
+        /// a set of data to investigate the critical value 
+        /// that changes the connectivity of the random graph. 
+        /// </summary>
+        public static void PrintReport()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class SimpleGraphSearch
@@ -56,6 +66,7 @@ namespace Problem5
         IList<int>[] G; // Graph represented by adjacency-list
         int[] Components; // maps vertex to connected component ID. 
         IDictionary<int, int> ComponentSize; // Maps component ID to component size. 
+        int TotalComponent;
 
         public SimpleGraphSearch(IList<int>[] AdjList)
         {
@@ -63,7 +74,7 @@ namespace Problem5
             G = AdjList;
             Components = new int[AdjList.Length];
             ComponentSize = new Dictionary<int, int>();
-            ComponentsSearch();
+            TotalComponent = ComponentsSearch();
         }
 
         /// <summary>
@@ -174,7 +185,26 @@ namespace Problem5
         /// </returns>
         public double[] ProduceStats()
         {
-            throw new NotImplementedException();
+            double sum = 0, sumsq = 0, 
+                max = Double.NegativeInfinity,
+                min = Double.PositiveInfinity;
+            foreach (int k in ComponentSize.Keys)
+            {
+                int size = ComponentSize[k];
+                sum += size;
+                sumsq += Math.Pow(size, 2);
+                max = Math.Max(max, size);
+                min = Math.Min(min, size);
+            }
+            double[] res = new double[]
+            {
+                TotalComponent,
+                sum/TotalComponent,
+                max,
+                min,
+                Math.Sqrt(sumsq/TotalComponent - Math.Pow(sum/TotalComponent, 2))
+            };
+            return res;
         }
 
     }
