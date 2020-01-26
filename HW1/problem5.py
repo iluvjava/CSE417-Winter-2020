@@ -70,7 +70,7 @@ def get_goodness(arr: List[int], M: List[List], W: List[List])->Tuple:
     return (M_psum/l, W_psum/l)
 
 
-def goodness_for(N:int):
+def goodness_for(N: int):
     """
     Function will generate a randomly permutated lists for the preferece list for M, W, then it
     will measure the goodness for W, and M, with an n starting at 1000, increments at 100 and ends at 1e4
@@ -99,7 +99,6 @@ if __name__ == "__main__":
     print("Running on random input, we have the following values for goodness: ")
     n = 50
     stats = [[goodness_for(J) for I in range(n)] for J in [125, 250, 500, 1000, 2000, 4000, 8000]]
-
 
     def stats_helper(row):
         m_sum, w_sum = 0, 0
