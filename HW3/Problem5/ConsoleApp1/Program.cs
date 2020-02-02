@@ -8,19 +8,51 @@ namespace Problem5
     {
         static void Main(string[] args)
         {
-            WriteLine("Hello World!");
+            // IList<int>[] adjlist = KissMe.RandGraph(5, 1);
+            // for (int I = 0; I < adjlist.Length; I++)
+            // {
+            //     Write($"{I}: ");
+            //     foreach (int n in adjlist[I])
+            //     {
+            //         Write($"{n} ");
+            //     }
+            //     WriteLine();
+            // }
 
-            IList<int>[] adjlist = KissMe.RandGraph(5, 1);
-            for (int I = 0; I < adjlist.Length; I++)
+            PrintResults();
+            WriteLine("Press enter to exit.");
+            ReadKey();
+        }
+
+        /// <summary>
+        /// Function will print result for this experiment to the console. 
+        /// </summary>
+        static void PrintResults()
+        {
+            int n = (int)1e4;
+            double range = 1.5e-3;
+
+            int N = 30;
+            double delta = range / N;
+            double[] p = new double[N];
+            for (int I = 0; I < N; I++)
             {
-                Write($"{I}: ");
-                foreach (int n in adjlist[I])
-                {
-                    Write($"{n} ");
-                }
-                WriteLine();
+                p[I] = Math.Log(n) / n - range + (I + N / 2) * delta;
             }
-            ReadLine();
+            WriteLine("The graph has 10^4 vertex and it's randomly generated with different " +
+                "edge density, here is the statistics regarding it's connected components: ");
+            WriteLine("Vertex, Edge_Density, TotalComponents, Max_Component_Size" +
+                ", Min_Component_size, Size_SD");
+            for (int I = 0; I < p.Length; I++)
+            {
+                //0, 2, 3, 4
+                var G = KissMe.RandGraph(n, p[I]);
+                var g = new SimpleGraphSearch(G);
+                var res = g.ProduceStats();
+                WriteLine($"{n}, {p[I]}, {res[0]}, {res[2]}, {res[3]}, {res[4]}");
+            }
+
+
         }
     }
 
@@ -48,16 +80,6 @@ namespace Problem5
                     }
                 }
             return G;
-        }
-
-        /// <summary>
-        /// Method will run the using random graph and produce 
-        /// a set of data to investigate the critical value 
-        /// that changes the connectivity of the random graph. 
-        /// </summary>
-        public static void PrintReport()
-        {
-            throw new NotImplementedException();
         }
     }
 
@@ -175,8 +197,7 @@ namespace Problem5
         /// Produce stats from the graph about the connectivity of the graph. 
         /// </summary>
         /// <returns>
-        /// {
-        ///     total number of connected component of g, 
+        ///        ///     total number of connected component of g, 
         ///     average size of the connected component, 
         ///     max component size, 
         ///     min component size,
@@ -206,8 +227,5 @@ namespace Problem5
             };
             return res;
         }
-
     }
-
-    
 }

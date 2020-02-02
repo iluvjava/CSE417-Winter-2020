@@ -41,14 +41,14 @@ namespace Tests
             TestRandomGraphOnSize();
         }
 
-        public void TestRandomGraphOnSize(int n = (int)1e4, double range = 6e-4)
+        public void TestRandomGraphOnSize(int n = (int)1e4, double range = 1.5e-3)
         {
             int N = 30;
             double delta = range / N;
             double[] p = new double[N];
             for (int I = 0; I < N; I++)
             {
-                p[I] = Math.Log(n)/n - range + I * delta;
+                p[I] = Math.Log(n)/n - range + (I + N/2) * delta;
             }
 
             for (int I = 0; I < p.Length; I++)
@@ -56,13 +56,16 @@ namespace Tests
                 var G = KissMe.RandGraph(n, p[I]);
                 var g = new SimpleGraphSearch(G);
                 var res = g.ProduceStats();
-                string result = $"n= {n}; p = {p[I]}\n";
-                result += $"Total Components: {res[0]}\n";
-                result += $"Component Avg Size: {res[1]}\n";
-                result += $"Max Component Size: {res[2]}\n";
-                result += $"Min Component size: {res[3]}\n";
-                result += $"Component Size SD: {res[4]}\n\n";
-                Write(result);
+                // string result = $"n= {n}; p = {p[I]}\n";
+                // result += $"Total Components: {res[0]}\n";
+                // result += $"Component Avg Size: {res[1]}\n";
+                // result += $"Max Component Size: {res[2]}\n";
+                // result += $"Min Component size: {res[3]}\n";
+                // result += $"Component Size SD: {res[4]}\n\n";
+                // Write(result);
+
+                //0, 2, 3, 4
+                WriteLine($"{n}, {p[I]}, {res[0]}, {res[2]}, {res[3]}, {res[4]}");
             }
 
         }
