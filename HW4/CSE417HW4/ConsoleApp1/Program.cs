@@ -12,23 +12,6 @@ namespace HW4
     /// </summary>
     public static class KissMe
     {
-        public static IList<int>[] RandGraph(int n, double p)
-        {
-            Random r = new Random();
-            IList<int>[] G = new IList<int>[n];
-            for (int I = 0; I < G.Length; G[I++] = new List<int>()) ;
-            for (int I = 0; I < n; I++)
-                for (int J = I + 1; J < n; J++)
-                {
-                    if (r.NextDouble() <= p)
-                    {
-                        G[I].Add(J);
-                        G[J].Add(I);
-                    }
-                }
-            return G;
-        }
-
         /// <summary>
         /// The result will get printed out to the console and 
         /// you should copy then and get the image elsewhere. 
@@ -66,25 +49,41 @@ namespace HW4
             WriteLine(sb.ToString());
 
         }
+
+        public static IList<int>[] RandGraph(int n, double p)
+        {
+            Random r = new Random();
+            IList<int>[] G = new IList<int>[n];
+            for (int I = 0; I < G.Length; G[I++] = new List<int>()) ;
+            for (int I = 0; I < n; I++)
+                for (int J = I + 1; J < n; J++)
+                {
+                    if (r.NextDouble() <= p)
+                    {
+                        G[I].Add(J);
+                        G[J].Add(I);
+                    }
+                }
+            return G;
+        }
     }
 
     public class SimpleGraph
     {
-        protected int Maxdeg;
         // The max degree of the graph. 
         protected int[] Components;
-        // maps vertex to connected component ID.
-
-        protected int[] Degree;
-        // Maps the vertex to its degree. 
-
-        protected IDictionary<int, int> DegFreq;
-        // Maps the degree of vertex to its frequency of appearance in the graph. 
 
         protected IDictionary<int, int> ComponentSize;
+        protected IDictionary<int, int> DegFreq;
+        protected int[] Degree;
+        // maps vertex to connected component ID.
+        // Maps the vertex to its degree. 
+        // Maps the degree of vertex to its frequency of appearance in the graph. 
+        protected IList<int>[] G;
 
-        protected IList<int>[] G; // Graph represented by adjacency-list
-                                  // Maps component ID to component size.
+        protected int Maxdeg = -1;
+        // Graph represented by adjacency-list
+        // Maps component ID to component size.
         protected int TotalComponent;
 
 
@@ -96,6 +95,17 @@ namespace HW4
             ComponentSize = new Dictionary<int, int>();
             TotalComponent = ComponentsSearch();
             Degree = CountDegree();
+        }
+
+        /// <summary>
+        /// 
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int[] GetColors()
+        {
+            int[] colors = new int[Maxdeg];
+            return null;
         }
 
         /// <summary> Performs a component search for this given graph. </summary> </return> the
@@ -142,6 +152,24 @@ namespace HW4
         public IDictionary<int, int> GetComponentSize()
         {
             return ComponentSize;
+        }
+
+        /// <summary>
+        /// It counts the frequency of different vertex degree in the graph. 
+        /// The graph will be viewed as a directed graph. 
+        /// </summary>
+        /// <returns></returns>
+        public IDictionary<int, int> GetDegStats()
+        {
+            var res = new SortedDictionary<int, int>();
+            for (int I = 0; I < Degree.Length; I++)
+            {
+                if (res.ContainsKey(Degree[I]))
+                    res[Degree[I]]++;
+                else
+                    res[Degree[I]] = 1;
+            }
+            return res;
         }
 
         /// <summary>
@@ -200,16 +228,6 @@ namespace HW4
         }
 
         /// <summary>
-        /// Get a list of neighbors for vertex v.
-        /// </summary>
-        /// <param name="v">An integer of the vertex.</param>
-        /// <returns>An IList containing all the vertex that v is linked to. s</returns>
-        protected IList<int> N(int v)
-        {
-            return G[v];
-        }
-
-        /// <summary>
         /// The method establish the degree filed for the class. 
         /// It will assume that the graph is a directed graph. 
         /// To get the degree for the undirected graph, 
@@ -221,39 +239,21 @@ namespace HW4
         protected int[] CountDegree()
         {
             int[] res = new int[G.Length];
-            for (int I = 0; I < G.Length; res[I] = G[I].Count/2, I++);
+            for (int I = 0;
+                 I < G.Length;
+                 res[I] = G[I].Count / 2, Maxdeg = Math.Max(res[I], Maxdeg), I++) ;
             return res;
         }
 
         /// <summary>
-        /// It counts the frequency of different vertex degree in the graph. 
-        /// The graph will be viewed as a directed graph. 
+        /// Get a list of neighbors for vertex v.
         /// </summary>
-        /// <returns></returns>
-        public IDictionary<int, int> GetDegStats()
+        /// <param name="v">An integer of the vertex.</param>
+        /// <returns>An IList containing all the vertex that v is linked to. s</returns>
+        protected IList<int> N(int v)
         {
-            var res = new SortedDictionary<int, int>();
-            for (int I = 0; I < Degree.Length; I++)
-            {
-                if (res.ContainsKey(Degree[I]))
-                    res[Degree[I]]++;
-                else
-                    res[Degree[I]] = 1;
-            }
-            return res; 
+            return G[v];
         }
-
-
-        /// <summary>
-        /// 
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static int[] GetColors()
-        {
-            return null;
-        }
-
     }
 
     internal class Program
