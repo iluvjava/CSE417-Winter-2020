@@ -114,7 +114,7 @@ namespace HW4
             int k = Maxdeg + 1;
             int[] vertexColoring = new int[G.Length];
             // Uncoloring all vertex. 
-            for (int I = 0; I < k; vertexColoring[I++] = -1);
+            for (int I = 0; I < G.Length; vertexColoring[I++] = -1);
             // For each vertex
             for (int I = 0; I < G.Length; I++)
             {
@@ -252,9 +252,6 @@ namespace HW4
 
         /// <summary>
         /// The method establish the degree filed for the class.
-        /// It will assume that the graph is a directed graph.
-        /// To get the degree for the undirected graph,
-        /// the degree needs to be divided by 2.
         /// <returns>
         /// It will return an array that maps the vertex to its degree.
         /// </returns>
@@ -262,9 +259,11 @@ namespace HW4
         protected int[] CountDegree()
         {
             int[] res = new int[G.Length];
-            for (int I = 0;
-                 I < G.Length;
-                 res[I] = G[I].Count / 2, Maxdeg = Math.Max(res[I], Maxdeg), I++) ;
+            for (int I = 0; I < G.Length; I++)
+            {
+                res[I] = G[I].Count;
+                Maxdeg = Math.Max(res[I], Maxdeg);
+            }
             return res;
         }
 

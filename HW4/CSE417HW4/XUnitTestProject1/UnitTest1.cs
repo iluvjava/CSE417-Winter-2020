@@ -93,8 +93,16 @@ namespace XUnitTestProject1
 
         public static SimpleGraph HyperCubeConfigurations()
         {
-            int[] arr1 = new int[] {0, 1, 3, 2, 2, 0, 1, 3, 7, 6, 5, 4};
-            int[] arr2 = new int[] {1, 3, 2, 0, 7, 5, 5, 6, 6, 5, 4, 7};
+            int[] aggregate = new int[] { 0, 1, 0, 2, 0, 4,
+                                          3, 2, 3, 1, 3, 6,
+                                          2, 7, 1, 5,
+                                          7, 6, 6, 5, 5, 4, 4, 7};
+            int[] arr1 = new int[12], arr2 = new int[12];
+            for (int I = 0; I < arr1.Length; I++)
+            {
+                arr1[I] = aggregate[2*I];
+                arr2[I] = aggregate[2 * I + 1];
+            }
             int n = 8;
             SimpleGraph res = SimpleGraph.MakeGraph(n, arr1, arr2);
             return res; 
