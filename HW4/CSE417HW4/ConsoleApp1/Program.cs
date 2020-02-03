@@ -29,29 +29,42 @@ namespace HW4
             return G;
         }
 
-
         /// <summary>
         /// The result will get printed out to the console and 
         /// you should copy then and get the image elsewhere. 
+        /// 
+        /// The printed result will be formatted as json file for convenience. 
         /// </summary>
         public static void HW4P4Print(
             int n = 1000,
-            double p_start = 0.002, 
+            double p_start = 0.002,
             double p_end = 0.02,
             int N = 10)
         {
             double[] EdgeDensity = new double[N];
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("[");
+
             for (double P = p_start, delta = (p_end - p_start) / N;
                 P <= p_end;
                 P += delta)
             {
                 var G = new SimpleGraph(RandGraph(n, P));
-                WriteLine($"Ded Distribution with p = {P}; n = {n};");
+                //output.WriteLine($"Ded Distribution with p = {P}; n = {n};");
+                sb.AppendLine("{");
+                sb.AppendLine($"\t\"p\":{P},");
+                sb.AppendLine($"\t\"n\":{n},");
                 foreach (KeyValuePair<int, int> kvp in G.GetDegStats())
                 {
-                    WriteLine($"Deg = {kvp.Key}, Frequency = {kvp.Value}");
+                    sb.AppendLine($"\t\"{kvp.Key}\": {kvp.Value},");
                 }
+                sb.Remove(sb.Length - 3, 2);
+                sb.AppendLine("},");
             }
+            sb.Remove(sb.Length - 3, 2);
+            sb.AppendLine("]");
+            WriteLine(sb.ToString());
+
         }
     }
 
@@ -208,7 +221,7 @@ namespace HW4
         protected int[] CountDegree()
         {
             int[] res = new int[G.Length];
-            for (int I = 0; I < G.Length; res[I] = G[I].Count, I++);
+            for (int I = 0; I < G.Length; res[I] = G[I].Count/2, I++);
             return res;
         }
 
@@ -217,21 +230,30 @@ namespace HW4
         /// The graph will be viewed as a directed graph. 
         /// </summary>
         /// <returns></returns>
-        public IDictionary<int, int> GetDegStats(bool undirected = true)
+        public IDictionary<int, int> GetDegStats()
         {
             var res = new SortedDictionary<int, int>();
             for (int I = 0; I < Degree.Length; I++)
             {
-                int feq = 0;
-                res.TryGetValue(I, out feq);
-                res[I] = feq + 1;
-            }
-            if (undirected)
-            {
-                foreach (int K in res.Keys) res[K] /= 2;
+                if (res.ContainsKey(Degree[I]))
+                    res[Degree[I]]++;
+                else
+                    res[Degree[I]] = 1;
             }
             return res; 
         }
+
+
+        /// <summary>
+        /// 
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static int[] GetColors()
+        {
+            return null;
+        }
+
     }
 
     internal class Program
@@ -242,7 +264,7 @@ namespace HW4
             // I++) { Write($"{I}: "); foreach (int n in adjlist[I]) { Write($"{n} "); }
             // WriteLine(); }
 
-            PrintResults();
+            //PrintResults();
             WriteLine("Press enter to exit.");
             ReadKey();
         }
