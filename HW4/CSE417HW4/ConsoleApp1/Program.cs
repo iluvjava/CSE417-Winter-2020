@@ -99,7 +99,6 @@ namespace HW4
             Degree = CountDegree();
         }
 
-        [Obsolete]
         /// <summary>
         /// This method will return an array that contains all the coloring 
         /// information, it will maps each 
@@ -122,7 +121,7 @@ namespace HW4
                 for (int J = 0; J < k; J++) ColorNotUsed.Add(J);
                 foreach (int v in N(I))
                 {
-                    if (vertexColoring[v] != -1 && ColorNotUsed.Contains(vertexColoring[v]))
+                    if (ColorNotUsed.Contains(vertexColoring[v]))
                         ColorNotUsed.Remove(vertexColoring[v]);
                 }
                 // For each colored vertex, color it with the smallest color that is not used. 

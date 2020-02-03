@@ -33,7 +33,7 @@ namespace XUnitTestProject1
 
 
         [Fact]
-        public void TestHW4()
+        public void TestDegreeDistribution()
         {
             HW4P4Print();
         }
