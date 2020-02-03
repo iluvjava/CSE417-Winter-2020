@@ -1,0 +1,5 @@
+﻿* Migrate Simple Graph into Corloing Graph for HW. 
+
+* Collect data for the coloring problem 
+
+* Visualize Data in Python. 

@@ -32,7 +32,7 @@ namespace HW4
                 P <= p_end;
                 P += delta)
             {
-                var G = new SimpleGraph(RandGraph(n, P));
+                var G = new ColoringGraph(RandGraph(n, P));
                 //output.WriteLine($"Ded Distribution with p = {P}; n = {n};");
                 sb.AppendLine("{");
                 sb.AppendLine($"\t\"p\":{P},");
@@ -67,43 +67,68 @@ namespace HW4
         }
     }
 
-    /// Simple graph, simple rick.
-    /// Go watch Rick and Morty Season 4, I am going to 
-    /// watch it during spring break. 
-    public class SimpleGraph
+    public class ColoringGraph : SimpleGraph
     {
-        // The max degree of the graph.
-        protected int[] Components;
-        protected IDictionary<int, int> ComponentSize;
-        protected IDictionary<int, int> DegFreq;
-        protected int[] Degree;
+        protected int[] Colorings; //! 
+        protected int[] Degree; //!
+        protected int Maxdeg = -1; //!
 
-        // maps vertex to connected component ID.
-        // Maps the vertex to its degree.
-        // Maps the degree of vertex to its frequency of appearance in the graph.
-        protected IList<int>[] G;
-
-        protected int Maxdeg = -1;
-
-        // Graph represented by adjacency-list
-        // Maps component ID to component size.
-        protected int TotalComponent;
-
-        public SimpleGraph(IList<int>[] AdjList)
+        public ColoringGraph(IList<int>[] AdjList) : base()
         {
             if (AdjList.Length <= 1) throw new Exception("Invalid Adjacency-List");
             G = AdjList;
             Components = new int[AdjList.Length];
             ComponentSize = new Dictionary<int, int>();
-            TotalComponent = ComponentsSearch();
+
             Degree = CountDegree();
+            Colorings = GetColors();
         }
 
         /// <summary>
-        /// This method will return an array that contains all the coloring 
-        /// information, it will maps each 
-        /// of the vertex to a color. 
-        /// The number of color is bounded by the max degree of vertex in the graph. 
+        /// This is a factory method that will construct the undirected simple graph and then 
+        /// you can use it for testing things easily. 
+        /// 
+        /// To construct a graph, simply specify total number of vertex, 
+        /// use 2 arrray, such that, the ith edge in the graph is: {arr1[i], arr2[i]}
+        /// 
+        /// undirectedness, you don't need to swapp the number from arr1 to 
+        /// make the algorithm to add them in both direction.
+        /// </summary>
+        /// <param name="n">
+        /// The total number of vertices that are in the grapgh.
+        /// </param>
+        /// <param name="arr1">
+        /// The vertex is indexed from 0 -> n -1
+        /// </param>
+        /// <param name="arr2">
+        /// </param>
+        /// The vertex is index from 0 -> n-1
+        /// <returns>
+        /// An instance of the simple graph. 
+        /// </returns>
+        public static ColoringGraph MakeGraph(int n, int[] arr1, int[] arr2)
+        {
+            IList<int>[] G = new IList<int>[n];
+            for (int I = 0; I < n; G[I++] = new List<int>()) ;
+            if (arr1.Length != arr2.Length) throw new ArgumentException("Invalid Edges.");
+            if (n <= 0) throw new ArgumentException("Number of vertices should be a natrual number.");
+            for (int I = 0; I < arr1.Length; I++)
+            {
+                int v = arr1[I];
+                int u = arr2[I];
+                if (v >= n || u >= n) throw new ArgumentException("Edge index not in range. ");
+                if (G[v].Contains(u)) continue;
+                G[v].Add(u);
+                G[u].Add(v);
+            }
+            return new ColoringGraph(G);
+        }
+
+        /// <summary>
+        /// The method will store the coloring info for the graph, it will be stored into the 
+        /// field of the class. 
+        /// 
+        /// 
         /// </summary>
         /// <returns>
         /// An int[] array. 
@@ -113,7 +138,7 @@ namespace HW4
             int k = Maxdeg + 1;
             int[] vertexColoring = new int[G.Length];
             // Uncoloring all vertex. 
-            for (int I = 0; I < G.Length; vertexColoring[I++] = -1);
+            for (int I = 0; I < G.Length; vertexColoring[I++] = -1) ;
             // For each vertex
             for (int I = 0; I < G.Length; I++)
             {
@@ -130,20 +155,94 @@ namespace HW4
             return vertexColoring;
         }
 
-        /// <summary> Performs a component search for this given graph. </summary> </return> the
-        /// total number of components involved. </return>
-        public int ComponentsSearch()
+        /// <summary>
+        /// It counts the frequency of different vertex degree in the graph.
+        /// The graph will be viewed as a directed graph.
+        /// </summary>
+        /// <returns></returns>
+        public IDictionary<int, int> GetDegStats()
         {
-            ComponentSize[1] = BFS();
-            int component = 2;
-            for (int I = 1; I < G.Length; I++)
+            var res = new SortedDictionary<int, int>();
+            for (int I = 0; I < Degree.Length; I++)
             {
-                if (Components[I] == 0)
-                {
-                    ComponentSize[component] = BFS(I, component++);
-                }
+                if (res.ContainsKey(Degree[I]))
+                    res[Degree[I]]++;
+                else
+                    res[Degree[I]] = 1;
             }
-            return component - 1;
+            return res;
+        }
+
+        /// <summary>
+        /// The method establish the degree filed for the class.
+        /// <returns>
+        /// It will return an array that maps the vertex to its degree.
+        /// </returns>
+        /// </summary>
+        protected int[] CountDegree()
+        {
+            int[] res = new int[G.Length];
+            for (int I = 0; I < G.Length; I++)
+            {
+                res[I] = G[I].Count;
+                Maxdeg = Math.Max(res[I], Maxdeg);
+            }
+            return res;
+        }
+
+    }
+
+    /// Simple graph, simple rick.
+    /// Go watch Rick and Morty Season 4, I am going to 
+    /// watch it during spring break. 
+    public class SimpleGraph
+    {
+        
+
+        // The max degree of the graph.
+        protected int[] Components;
+        // An array storing the colors for each vertex founded by the greedy algorithm. 
+        protected IDictionary<int, int> ComponentSize;
+        protected IDictionary<int, int> DegFreq;
+
+       
+        // maps vertex to connected component ID.
+        // Maps the vertex to its degree.
+        // Maps the degree of vertex to its frequency of appearance in the graph.
+        protected IList<int>[] G;
+
+        // Graph represented by adjacency-list
+        // Maps component ID to component size.
+        protected int TotalComponent;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="AdjList"></param>
+        public SimpleGraph(IList<int>[] AdjList)
+        {
+            if (AdjList.Length <= 1) throw new Exception("Invalid Adjacency-List");
+            G = AdjList;
+            Components = new int[AdjList.Length];
+            ComponentSize = new Dictionary<int, int>();
+            TotalComponent = ComponentsSearch();
+
+        }
+
+        /// <summary>
+        /// Internal Use only. 
+        /// </summary>
+        protected SimpleGraph()
+        {
+
+        }
+        /// <summary>
+        /// This method is crated only for HW4. 
+        /// </summary>
+        /// <returns></returns>
+        public static SimpleGraph MakeRandomColoringGraph()
+        {
+            return null; 
         }
 
         /// <summary>
@@ -171,29 +270,46 @@ namespace HW4
             return res;
         }
 
+        /// <summary> Performs a component search for this given graph. </summary> </return> the
+        /// total number of components involved. </return>
+        public int ComponentsSearch()
+        {
+            ComponentSize[1] = BFS();
+            int component = 2;
+            for (int I = 1; I < G.Length; I++)
+            {
+                if (Components[I] == 0)
+                {
+                    ComponentSize[component] = BFS(I, component++);
+                }
+            }
+            return component - 1;
+        }
+
         public IDictionary<int, int> GetComponentSize()
         {
             return ComponentSize;
         }
 
         /// <summary>
-        /// It counts the frequency of different vertex degree in the graph.
-        /// The graph will be viewed as a directed graph.
+        /// The method returns a copy of the adjacency list of the graph for testing 
+        /// 
         /// </summary>
-        /// <returns></returns>
-        public IDictionary<int, int> GetDegStats()
+        /// <returns>
+        /// IList<int>[]
+        /// </returns>
+        public IList<int>[] GetDeepCopyOfAdjList()
         {
-            var res = new SortedDictionary<int, int>();
-            for (int I = 0; I < Degree.Length; I++)
+            IList<int>[] thecopy = new IList<int>[G.Length];
+            for (int I = 0; I < G.Length; thecopy[I++] = new List<int>()) ;
+            for (int I = 0; I < G.Length; I++)
             {
-                if (res.ContainsKey(Degree[I]))
-                    res[Degree[I]]++;
-                else
-                    res[Degree[I]] = 1;
+                foreach (int v in G[I]) thecopy[I].Add(v);
             }
-            return res;
+            return thecopy;
         }
 
+        
         /// <summary>
         /// Produce stats from the graph about the connectivity of the graph.
         /// </summary>
@@ -250,23 +366,6 @@ namespace HW4
         }
 
         /// <summary>
-        /// The method establish the degree filed for the class.
-        /// <returns>
-        /// It will return an array that maps the vertex to its degree.
-        /// </returns>
-        /// </summary>
-        protected int[] CountDegree()
-        {
-            int[] res = new int[G.Length];
-            for (int I = 0; I < G.Length; I++)
-            {
-                res[I] = G[I].Count;
-                Maxdeg = Math.Max(res[I], Maxdeg);
-            }
-            return res;
-        }
-
-        /// <summary>
         /// Get a list of neighbors for vertex v.
         /// </summary>
         /// <param name="v">An integer of the vertex.</param>
@@ -275,66 +374,7 @@ namespace HW4
         {
             return G[v];
         }
-
-        /// <summary>
-        /// This is a factory method that will construct the undirected simple graph and then 
-        /// you can use it for testing things easily. 
-        /// 
-        /// To construct a graph, simply specify total number of vertex, 
-        /// use 2 arrray, such that, the ith edge in the graph is: {arr1[i], arr2[i]}
-        /// 
-        /// undirectedness, you don't need to swapp the number from arr1 to 
-        /// make the algorithm to add them in both direction.
-        /// </summary>
-        /// <param name="n">
-        /// The total number of vertices that are in the grapgh.
-        /// </param>
-        /// <param name="arr1">
-        /// The vertex is indexed from 0 -> n -1
-        /// </param>
-        /// <param name="arr2">
-        /// </param>
-        /// The vertex is index from 0 -> n-1
-        /// <returns>
-        /// An instance of the simple graph. 
-        /// </returns>
-        public static SimpleGraph MakeGraph(int n, int[] arr1, int[] arr2)
-        {
-            IList<int>[] G = new IList<int>[n];
-            for (int I = 0; I < n; G[I++] = new List<int>());
-            if (arr1.Length != arr2.Length) throw new ArgumentException("Invalid Edges.");
-            if (n <= 0) throw new ArgumentException("Number of vertices should be a natrual number.");
-            for (int I = 0; I < arr1.Length; I++)
-            {
-                int v = arr1[I];
-                int u = arr2[I];
-                if (v >= n || u >= n) throw new ArgumentException("Edge index not in range. ");
-                if (G[v].Contains(u)) continue;
-                G[v].Add(u);
-                G[u].Add(v);
-            }
-            return new SimpleGraph(G);
-        }
-
-        /// <summary>
-        /// The method returns a copy of the adjacency list of the graph for testing 
-        /// 
-        /// </summary>
-        /// <returns>
-        /// IList<int>[]
-        /// </returns>
-        public IList<int>[] GetDeepCopyOfAdjList()
-        {
-            IList<int>[] thecopy = new IList<int>[G.Length];
-            for (int I = 0; I < G.Length; thecopy[I++] = new List<int>()) ;
-            for (int I = 0; I < G.Length; I++)
-            {
-                foreach (int v in G[I]) thecopy[I].Add(v);
-            }
-            return thecopy;
-        }
     }
-
     internal class Program
     {
         private static void Main(string[] args)

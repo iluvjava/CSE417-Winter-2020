@@ -59,7 +59,7 @@ namespace XUnitTestProject1
                 P <= p_end;
                 P += delta)
             {
-                var G = new SimpleGraph(RandGraph(n, P));
+                var G = new ColoringGraph(RandGraph(n, P));
                 //output.WriteLine($"Ded Distribution with p = {P}; n = {n};");
                 sb.AppendLine("{");
                 sb.AppendLine($"\t\"p\":{P},");
@@ -82,7 +82,7 @@ namespace XUnitTestProject1
         /// </summary>
         public void ColoringTest()
         {
-            SimpleGraph thehypercube = HyperCubeConfigurations();
+            ColoringGraph thehypercube = HyperCubeConfigurations();
             int[] colors = thehypercube.GetColors();
             output.WriteLine("Verfies it by hand: ");
             for (int I = 0; I < colors.Length; I++)
@@ -91,7 +91,7 @@ namespace XUnitTestProject1
             }
         }
 
-        public static SimpleGraph HyperCubeConfigurations()
+        public static ColoringGraph HyperCubeConfigurations()
         {
             int[] aggregate = new int[] { 0, 1, 0, 2, 0, 4,
                                           3, 2, 3, 1, 3, 6,
@@ -104,7 +104,7 @@ namespace XUnitTestProject1
                 arr2[I] = aggregate[2 * I + 1];
             }
             int n = 8;
-            SimpleGraph res = SimpleGraph.MakeGraph(n, arr1, arr2);
+            ColoringGraph res = ColoringGraph.MakeGraph(n, arr1, arr2);
             return res; 
         }
 
