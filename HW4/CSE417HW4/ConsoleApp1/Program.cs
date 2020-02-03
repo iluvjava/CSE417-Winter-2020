@@ -72,6 +72,7 @@ namespace HW4
         protected int[] Colorings; //! 
         protected int[] Degree; //!
         protected int Maxdeg = -1; //!
+        int ColorNeeded = -1; // The number of color actually used for the vertices 
 
         public ColoringGraph(IList<int>[] AdjList) : base()
         {
@@ -152,6 +153,8 @@ namespace HW4
                 // For each colored vertex, color it with the smallest color that is not used. 
                 vertexColoring[I] = ColorNotUsed.Min;
             }
+            // Collect actual acolor usage: 
+
             return vertexColoring;
         }
 
@@ -198,14 +201,12 @@ namespace HW4
     public class SimpleGraph
     {
         
-
         // The max degree of the graph.
         protected int[] Components;
         // An array storing the colors for each vertex founded by the greedy algorithm. 
         protected IDictionary<int, int> ComponentSize;
         protected IDictionary<int, int> DegFreq;
 
-       
         // maps vertex to connected component ID.
         // Maps the vertex to its degree.
         // Maps the degree of vertex to its frequency of appearance in the graph.
@@ -308,7 +309,6 @@ namespace HW4
             }
             return thecopy;
         }
-
         
         /// <summary>
         /// Produce stats from the graph about the connectivity of the graph.
@@ -383,9 +383,10 @@ namespace HW4
             // I++) { Write($"{I}: "); foreach (int n in adjlist[I]) { Write($"{n} "); }
             // WriteLine(); }
             //PrintResults();
-            WriteLine("Press enter to exit.");
-
+            
+            HW4P4PrintVertexDegreeDistribution();
             ReadKey();
+            WriteLine("That was the data for Vertex Distribution in HW4 P5. Press enter to exit.");
         }
 
         /// <summary>
@@ -415,6 +416,43 @@ namespace HW4
                 var res = g.ProduceStats();
                 WriteLine($"{n}, {p[I]}, {res[0]}, {res[2]}, {res[3]}, {res[4]}");
             }
+        }
+
+        /// <summary>
+        /// The result will get printed out to the console and 
+        /// you should copy then and get the image elsewhere. 
+        /// 
+        /// The printed result will be formatted as json file for convenience. 
+        /// </summary>
+        public static void HW4P4PrintVertexDegreeDistribution(
+            int n = 1000,
+            double p_start = 0.002,
+            double p_end = 0.02,
+            int N = 10)
+        {
+            double[] EdgeDensity = new double[N];
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("[");
+
+            for (double P = p_start, delta = (p_end - p_start) / N;
+                P <= p_end;
+                P += delta)
+            {
+                var G = new ColoringGraph(KissMe.RandGraph(n, P));
+                //output.WriteLine($"Ded Distribution with p = {P}; n = {n};");
+                sb.AppendLine("{");
+                sb.AppendLine($"\t\"p\":{P},");
+                sb.AppendLine($"\t\"n\":{n},");
+                foreach (KeyValuePair<int, int> kvp in G.GetDegStats())
+                {
+                    sb.AppendLine($"\t\"{kvp.Key}\": {kvp.Value},");
+                }
+                sb.Remove(sb.Length - 3, 2);
+                sb.AppendLine("},");
+            }
+            sb.Remove(sb.Length - 3, 2);
+            sb.AppendLine("]");
+            WriteLine(sb.ToString());
         }
     }
 }
