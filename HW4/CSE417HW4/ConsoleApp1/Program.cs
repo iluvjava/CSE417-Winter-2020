@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using static System.Console;
-
+/// <summary>
+/// Name: Hongda Li
+/// Class: 417
+/// 
+/// This file contains codes used for HW3 and HW4 assignment
+/// to investigate different properties of the random graph. 
+/// </summary>
 namespace HW4
 {
     /// <summary>
@@ -69,10 +75,9 @@ namespace HW4
 
     public class ColoringGraph : SimpleGraph
     {
-        protected int[] Colorings; //! 
+        protected int[] Colorings; //!
         protected int[] Degree; //!
         protected int Maxdeg = -1; //!
-        int ColorNeeded = -1; // The number of color actually used for the vertices 
 
         public ColoringGraph(IList<int>[] AdjList) : base()
         {
@@ -86,13 +91,13 @@ namespace HW4
         }
 
         /// <summary>
-        /// This is a factory method that will construct the undirected simple graph and then 
-        /// you can use it for testing things easily. 
-        /// 
-        /// To construct a graph, simply specify total number of vertex, 
+        /// This is a factory method that will construct the undirected simple graph and then
+        /// you can use it for testing things easily.
+        ///
+        /// To construct a graph, simply specify total number of vertex,
         /// use 2 arrray, such that, the ith edge in the graph is: {arr1[i], arr2[i]}
-        /// 
-        /// undirectedness, you don't need to swapp the number from arr1 to 
+        ///
+        /// undirectedness, you don't need to swapp the number from arr1 to
         /// make the algorithm to add them in both direction.
         /// </summary>
         /// <param name="n">
@@ -105,14 +110,15 @@ namespace HW4
         /// </param>
         /// The vertex is index from 0 -> n-1
         /// <returns>
-        /// An instance of the simple graph. 
+        /// An instance of the simple graph.
         /// </returns>
         public static ColoringGraph MakeGraph(int n, int[] arr1, int[] arr2)
         {
             IList<int>[] G = new IList<int>[n];
             for (int I = 0; I < n; G[I++] = new List<int>()) ;
             if (arr1.Length != arr2.Length) throw new ArgumentException("Invalid Edges.");
-            if (n <= 0) throw new ArgumentException("Number of vertices should be a natrual number.");
+            if (n <= 0) throw new ArgumentException
+                    ("Number of vertices should be a natrual number.");
             for (int I = 0; I < arr1.Length; I++)
             {
                 int v = arr1[I];
@@ -126,19 +132,35 @@ namespace HW4
         }
 
         /// <summary>
-        /// The method will store the coloring info for the graph, it will be stored into the 
-        /// field of the class. 
-        /// 
-        /// 
+        /// Method is for internal use
         /// </summary>
         /// <returns>
-        /// An int[] array. 
+        /// The index of the color that has the largest index.
+        /// </returns>
+        public int ColorUsed()
+        {
+            int maxcolor = -1;
+            for (int I = 0; I < Colorings.Length; I++)
+            {
+                maxcolor = Math.Max(maxcolor, Colorings[I]);
+            }
+            return maxcolor;
+        }
+
+        /// <summary>
+        /// The method will store the coloring info for the graph, it will be stored into the
+        /// field of the class.
+        ///
+        ///
+        /// </summary>
+        /// <returns>
+        /// An int[] array.
         /// </returns>
         public int[] GetColors()
         {
             int k = Maxdeg + 1;
             int[] vertexColoring = new int[G.Length];
-            // Uncoloring all vertex. 
+            // Uncoloring all vertex.
             for (int I = 0; I < G.Length; vertexColoring[I++] = -1) ;
             // For each vertex
             for (int I = 0; I < G.Length; I++)
@@ -150,14 +172,13 @@ namespace HW4
                     if (ColorNotUsed.Contains(vertexColoring[v]))
                         ColorNotUsed.Remove(vertexColoring[v]);
                 }
-                // For each colored vertex, color it with the smallest color that is not used. 
+                // For each colored vertex, color it with the smallest color that is not used.
                 vertexColoring[I] = ColorNotUsed.Min;
             }
-            // Collect actual acolor usage: 
+            // Collect actual acolor usage:
 
             return vertexColoring;
         }
-
         /// <summary>
         /// It counts the frequency of different vertex degree in the graph.
         /// The graph will be viewed as a directed graph.
@@ -192,19 +213,19 @@ namespace HW4
             }
             return res;
         }
-
     }
 
     /// Simple graph, simple rick.
-    /// Go watch Rick and Morty Season 4, I am going to 
-    /// watch it during spring break. 
+    /// Go watch Rick and Morty Season 4, I am going to
+    /// watch it during spring break.
     public class SimpleGraph
     {
-        
         // The max degree of the graph.
         protected int[] Components;
-        // An array storing the colors for each vertex founded by the greedy algorithm. 
+
+        // An array storing the colors for each vertex founded by the greedy algorithm.
         protected IDictionary<int, int> ComponentSize;
+
         protected IDictionary<int, int> DegFreq;
 
         // maps vertex to connected component ID.
@@ -227,23 +248,22 @@ namespace HW4
             Components = new int[AdjList.Length];
             ComponentSize = new Dictionary<int, int>();
             TotalComponent = ComponentsSearch();
-
         }
 
         /// <summary>
-        /// Internal Use only. 
+        /// Internal Use only.
         /// </summary>
         protected SimpleGraph()
         {
-
         }
+
         /// <summary>
-        /// This method is crated only for HW4. 
+        /// This method is crated only for HW4.
         /// </summary>
         /// <returns></returns>
         public static SimpleGraph MakeRandomColoringGraph()
         {
-            return null; 
+            return null;
         }
 
         /// <summary>
@@ -293,8 +313,8 @@ namespace HW4
         }
 
         /// <summary>
-        /// The method returns a copy of the adjacency list of the graph for testing 
-        /// 
+        /// The method returns a copy of the adjacency list of the graph for testing
+        ///
         /// </summary>
         /// <returns>
         /// IList<int>[]
@@ -309,7 +329,7 @@ namespace HW4
             }
             return thecopy;
         }
-        
+
         /// <summary>
         /// Produce stats from the graph about the connectivity of the graph.
         /// </summary>
@@ -375,18 +395,65 @@ namespace HW4
             return G[v];
         }
     }
+
     internal class Program
     {
+        /// <summary>
+        /// The result will get printed out to the console and
+        /// you should copy then and get the image elsewhere.
+        ///
+        /// The printed result will be formatted as json file for convenience.
+        /// </summary>
+        public static void HW4P4PrintVertexDegreeDistribution(
+            int n = 1000,
+            double p_start = 0.002,
+            double p_end = 0.02,
+            int N = 10)
+        {
+            double[] EdgeDensity = new double[N];
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("[");
+
+            for (double P = p_start, delta = (p_end - p_start) / N;
+                P <= p_end;
+                P += delta)
+            {
+                var G = new ColoringGraph(KissMe.RandGraph(n, P));
+                //output.WriteLine($"Ded Distribution with p = {P}; n = {n};");
+                sb.AppendLine("{");
+                sb.AppendLine($"\t\"p\":{P},");
+                sb.AppendLine($"\t\"n\":{n},");
+                foreach (KeyValuePair<int, int> kvp in G.GetDegStats())
+                {
+                    sb.AppendLine($"\t\"{kvp.Key}\": {kvp.Value},");
+                }
+                sb.Remove(sb.Length - 3, 2);
+                sb.AppendLine("},");
+            }
+            sb.Remove(sb.Length - 3, 2);
+            sb.AppendLine("]");
+            WriteLine(sb.ToString());
+        }
+
         private static void Main(string[] args)
         {
             // IList<int>[] adjlist = KissMe.RandGraph(5, 1); for (int I = 0; I < adjlist.Length;
             // I++) { Write($"{I}: "); foreach (int n in adjlist[I]) { Write($"{n} "); }
             // WriteLine(); }
             //PrintResults();
-            
+
             HW4P4PrintVertexDegreeDistribution();
+            WriteLine("That was the data for Vertex Distribution in HW4 P5. Press enter to" +
+                "view coloring experiments");
             ReadKey();
-            WriteLine("That was the data for Vertex Distribution in HW4 P5. Press enter to exit.");
+            Clear();
+            WriteLine("Loading.....");
+            string stuff = RandomGraphColoringReport();
+            Clear();
+            Write(stuff);
+            ReadKey();
+
+
         }
 
         /// <summary>
@@ -419,40 +486,41 @@ namespace HW4
         }
 
         /// <summary>
-        /// The result will get printed out to the console and 
-        /// you should copy then and get the image elsewhere. 
+        /// Generate a random graph and then use it to color it. 
         /// 
-        /// The printed result will be formatted as json file for convenience. 
+        /// This method investigate: 
+        /// How much color is needed on average for a graph with 1000
+        /// vertex, where p varies from 0.002 to 0.02 
         /// </summary>
-        public static void HW4P4PrintVertexDegreeDistribution(
+        public static string RandomGraphColoringReport(
             int n = 1000,
             double p_start = 0.002,
             double p_end = 0.02,
-            int N = 10)
+            int N = 10, // Increment for edge density
+            int samples = 100
+            )
         {
-            double[] EdgeDensity = new double[N];
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("[");
-
-            for (double P = p_start, delta = (p_end - p_start) / N;
-                P <= p_end;
-                P += delta)
+            for (double p = p_start, delta = (p_end - p_start) / N; p <= p_end; p += delta)
             {
-                var G = new ColoringGraph(KissMe.RandGraph(n, P));
-                //output.WriteLine($"Ded Distribution with p = {P}; n = {n};");
                 sb.AppendLine("{");
-                sb.AppendLine($"\t\"p\":{P},");
-                sb.AppendLine($"\t\"n\":{n},");
-                foreach (KeyValuePair<int, int> kvp in G.GetDegStats())
+                sb.AppendLine($"\"n\":{n},");
+                sb.AppendLine($"\"p\":{p},");
+                double avgColorUsed = Double.NaN;
+                for (int I = 0; I < samples; I++)
                 {
-                    sb.AppendLine($"\t\"{kvp.Key}\": {kvp.Value},");
+                    var aRandomGraph = new ColoringGraph(KissMe.RandGraph(n, p));
+                    avgColorUsed = Double.IsNaN(avgColorUsed) ? 0 : avgColorUsed;
+                    avgColorUsed += aRandomGraph.ColorUsed();
                 }
-                sb.Remove(sb.Length - 3, 2);
-                sb.AppendLine("},");
+                avgColorUsed /= samples;
+                sb.AppendLine($"\"AvgColor\": {avgColorUsed}");
+                sb.AppendLine($"}} {(p == p_end ?' ':',')}");
             }
-            sb.Remove(sb.Length - 3, 2);
             sb.AppendLine("]");
-            WriteLine(sb.ToString());
+
+            return sb.ToString();
         }
     }
 }

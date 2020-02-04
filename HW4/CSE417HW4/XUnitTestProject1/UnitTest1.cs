@@ -91,6 +91,13 @@ namespace XUnitTestProject1
             }
         }
 
+        [Fact]
+        public void RandomGraphColoringTest()
+        {
+            output.WriteLine(RandomGraphColoringReport());
+        }
+        
+
         public static ColoringGraph HyperCubeConfigurations()
         {
             int[] aggregate = new int[] { 0, 1, 0, 2, 0, 4,
@@ -106,6 +113,44 @@ namespace XUnitTestProject1
             int n = 8;
             ColoringGraph res = ColoringGraph.MakeGraph(n, arr1, arr2);
             return res; 
+        }
+
+        /// <summary>
+        /// Generate a random graph and then use it to color it. 
+        /// 
+        /// This method investigate: 
+        /// How much color is needed on average for a graph with 1000
+        /// vertex, where p varies from 0.002 to 0.02 
+        /// </summary>
+        public static string RandomGraphColoringReport(
+            int n = 1000,
+            double p_start = 0.002,
+            double p_end = 0.02,
+            int N = 10, // Increment for edge density
+            int samples = 100
+            )
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("[");
+            for (double p = p_start, delta = (p_end - p_start) / N; p <= p_end; p += delta)
+            {
+                sb.AppendLine("{");
+                sb.AppendLine($"\"n\":{n},");
+                sb.AppendLine($"\"p\":{p},");
+                double avgColorUsed = Double.NaN;
+                for (int I = 0; I < samples; I++)
+                {
+                    var aRandomGraph = new ColoringGraph(RandGraph(n, p));
+                    avgColorUsed = Double.IsNaN(avgColorUsed) ? 0 : avgColorUsed;
+                    avgColorUsed += aRandomGraph.ColorUsed();
+                }
+                avgColorUsed /= samples;
+                sb.AppendLine($"\"AvgColor\": {avgColorUsed}");
+                sb.AppendLine("},");
+            }
+            sb.AppendLine("]");
+
+            return sb.ToString(); 
         }
 
 
