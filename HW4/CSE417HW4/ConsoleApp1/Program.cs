@@ -459,7 +459,7 @@ namespace HW4
         /// <summary>
         /// Function will print result for this experiment to the console.
         /// </summary>
-        private static void PrintResults()
+        private static void PrintHW3ConnectedComponents()
         {
             int n = (int)1e4;
             double range = 1.5e-3;
