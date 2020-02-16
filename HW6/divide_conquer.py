@@ -17,20 +17,19 @@ class CodesAnalysis:
         The is a class that can help with collecting data about the performance of the
         k_th largest elements in the array function.
 
-        TestInstances:
-            
+        I am going to up all the date relavent to analysis into one class.
+        Then I am attaching the static method as an instance method of this class.
+
+        TestInstance:
+        [ (inputsize, comparison), (inputsize, comparison)... (inputsize, comparison)]
+
+        * When running an random test instance of  the k_th largest method, it will attach all the info about it
+        at the end of the array, making it easier for analysis of the method. 
     """
-    def __init__(self):
-        self.__count = 0
-        self.__TestInstances = []
-        return
 
-    def add1(self):
-        self.__count += 1
+    def __init__(self, problemsize: int):
 
-    def register(self):
-        self.__TestInstances.append(self.__count)
-        self.__count = 0
+        pass
 
 
 
