@@ -12,10 +12,34 @@ from typing import List
 from random import random as rnd
 from random import shuffle
 
+class CodesAnalysis:
+    """
+        The is a class that can help with collecting data about the performance of the
+        k_th largest elements in the array function.
+
+        TestInstances:
+            
+    """
+    def __init__(self):
+        self.__count = 0
+        self.__TestInstances = []
+        return
+
+    def add1(self):
+        self.__count += 1
+
+    def register(self):
+        self.__TestInstances.append(self.__count)
+        self.__count = 0
+
+
+
+
+
 
 def k_th(A: List[int], k):
     assert k >= 1 and k <= len(A), "Invalid k or array."
-    pivot = A[0]
+    pivot = A[int(rnd()*len(A))]
     equalTo = []
     larger = []
     smaller = []
