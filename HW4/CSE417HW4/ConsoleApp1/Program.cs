@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using static System.Console;
+
 /// <summary>
 /// Name: Hongda Li
 /// Class: 417
-/// 
-/// This file contains codes used for HW3 and HW4 assignment
-/// to investigate different properties of the random graph. 
+///
+/// This file contains codes used for HW3 and HW4 assignment to investigate different properties of
+/// the random graph.
 /// </summary>
 namespace HW4
 {
@@ -19,8 +20,8 @@ namespace HW4
     public static class KissMe
     {
         /// <summary>
-        /// The result will get printed out to the console and
-        /// you should copy then and get the image elsewhere.
+        /// The result will get printed out to the console and you should copy then and get the
+        /// image elsewhere.
         ///
         /// The printed result will be formatted as json file for convenience.
         /// </summary>
@@ -73,6 +74,20 @@ namespace HW4
         }
     }
 
+    /// <summary>
+    /// For HW 5 extra credit. 
+    /// </summary>
+    public class ColoringGraphButBetter : ColoringGraph
+    {
+        public ColoringGraphButBetter(IList<int>[] AdjList):base(AdjList)
+        {
+        }
+        public override int[] GetColors()
+        {
+            return base.GetColors();
+        }
+    }
+
     public class ColoringGraph : SimpleGraph
     {
         protected int[] Colorings; //!
@@ -91,27 +106,20 @@ namespace HW4
         }
 
         /// <summary>
-        /// This is a factory method that will construct the undirected simple graph and then
-        /// you can use it for testing things easily.
+        /// This is a factory method that will construct the undirected simple graph and then you
+        /// can use it for testing things easily.
         ///
-        /// To construct a graph, simply specify total number of vertex,
-        /// use 2 arrray, such that, the ith edge in the graph is: {arr1[i], arr2[i]}
+        /// To construct a graph, simply specify total number of vertex, use 2 arrray, such that,
+        /// the ith edge in the graph is: {arr1[i], arr2[i]}
         ///
-        /// undirectedness, you don't need to swapp the number from arr1 to
-        /// make the algorithm to add them in both direction.
+        /// undirectedness, you don't need to swapp the number from arr1 to make the algorithm to
+        /// add them in both direction.
         /// </summary>
-        /// <param name="n">
-        /// The total number of vertices that are in the grapgh.
-        /// </param>
-        /// <param name="arr1">
-        /// The vertex is indexed from 0 -> n -1
-        /// </param>
-        /// <param name="arr2">
-        /// </param>
-        /// The vertex is index from 0 -> n-1
-        /// <returns>
-        /// An instance of the simple graph.
-        /// </returns>
+        /// <param name="n">The total number of vertices that are in the grapgh.</param>
+        /// <param name="arr1">The vertex is indexed from 0 -&gt; n -1</param>
+        /// <param name="arr2"></param>
+        /// The vertex is index from 0 -&gt; n-1
+        /// <returns>An instance of the simple graph.</returns>
         public static ColoringGraph MakeGraph(int n, int[] arr1, int[] arr2)
         {
             IList<int>[] G = new IList<int>[n];
@@ -134,9 +142,7 @@ namespace HW4
         /// <summary>
         /// Method is for internal use
         /// </summary>
-        /// <returns>
-        /// The index of the color that has the largest index.
-        /// </returns>
+        /// <returns>The index of the color that has the largest index.</returns>
         public int ColorUsed()
         {
             int maxcolor = -1;
@@ -148,15 +154,11 @@ namespace HW4
         }
 
         /// <summary>
-        /// The method will store the coloring info for the graph, it will be stored into the
-        /// field of the class.
-        ///
-        ///
+        /// The method will store the coloring info for the graph, it will be stored into the field
+        /// of the class.
         /// </summary>
-        /// <returns>
-        /// An int[] array.
-        /// </returns>
-        public int[] GetColors()
+        /// <returns>An int[] array.</returns>
+        public virtual int[] GetColors()
         {
             int k = Maxdeg + 1;
             int[] vertexColoring = new int[G.Length];
@@ -179,9 +181,10 @@ namespace HW4
 
             return vertexColoring;
         }
+
         /// <summary>
-        /// It counts the frequency of different vertex degree in the graph.
-        /// The graph will be viewed as a directed graph.
+        /// It counts the frequency of different vertex degree in the graph. The graph will be
+        /// viewed as a directed graph.
         /// </summary>
         /// <returns></returns>
         public IDictionary<int, int> GetDegStats()
@@ -198,10 +201,8 @@ namespace HW4
         }
 
         /// <summary>
-        /// The method establish the degree filed for the class.
-        /// <returns>
-        /// It will return an array that maps the vertex to its degree.
-        /// </returns>
+        /// The method establish the degree filed for the class. <returns> It will return an array
+        /// that maps the vertex to its degree. </returns>
         /// </summary>
         protected int[] CountDegree()
         {
@@ -215,9 +216,8 @@ namespace HW4
         }
     }
 
-    /// Simple graph, simple rick.
-    /// Go watch Rick and Morty Season 4, I am going to
-    /// watch it during spring break.
+    /// Simple graph, simple rick. Go watch Rick and Morty Season 4, I am going to watch it during
+    /// spring break.
     public class SimpleGraph
     {
         // The max degree of the graph.
@@ -228,17 +228,14 @@ namespace HW4
 
         protected IDictionary<int, int> DegFreq;
 
-        // maps vertex to connected component ID.
-        // Maps the vertex to its degree.
-        // Maps the degree of vertex to its frequency of appearance in the graph.
+        // maps vertex to connected component ID. Maps the vertex to its degree. Maps the degree of
+        // vertex to its frequency of appearance in the graph.
         protected IList<int>[] G;
 
-        // Graph represented by adjacency-list
-        // Maps component ID to component size.
+        // Graph represented by adjacency-list Maps component ID to component size.
         protected int TotalComponent;
 
         /// <summary>
-        ///
         /// </summary>
         /// <param name="AdjList"></param>
         public SimpleGraph(IList<int>[] AdjList)
@@ -312,13 +309,9 @@ namespace HW4
             return ComponentSize;
         }
 
-        /// <summary>
-        /// The method returns a copy of the adjacency list of the graph for testing
+        /// <summary> The method returns a copy of the adjacency list of the graph for testing
         ///
-        /// </summary>
-        /// <returns>
-        /// IList<int>[]
-        /// </returns>
+        /// </summary> <returns> IList<int>[] </returns>
         public IList<int>[] GetDeepCopyOfAdjList()
         {
             IList<int>[] thecopy = new IList<int>[G.Length];
@@ -334,8 +327,8 @@ namespace HW4
         /// Produce stats from the graph about the connectivity of the graph.
         /// </summary>
         /// <returns>
-        /// total number of connected component of g, average size of the connected component,
-        /// max component size, min component size, standard deviation of the connected component. }
+        /// total number of connected component of g, average size of the connected component, max
+        /// component size, min component size, standard deviation of the connected component. }
         /// </returns>
         public double[] ProduceStats()
         {
@@ -399,8 +392,8 @@ namespace HW4
     internal class Program
     {
         /// <summary>
-        /// The result will get printed out to the console and
-        /// you should copy then and get the image elsewhere.
+        /// The result will get printed out to the console and you should copy then and get the
+        /// image elsewhere.
         ///
         /// The printed result will be formatted as json file for convenience.
         /// </summary>
@@ -435,6 +428,43 @@ namespace HW4
             WriteLine(sb.ToString());
         }
 
+        /// <summary>
+        /// Generate a random graph and then use it to color it.
+        ///
+        /// This method investigate: How much color is needed on average for a graph with 1000
+        /// vertex, where p varies from 0.002 to 0.02
+        /// </summary>
+        public static string RandomGraphColoringReport(
+            int n = 1000,
+            double p_start = 0.002,
+            double p_end = 0.02,
+            int N = 10, // Increment for edge density
+            int samples = 100
+            )
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("[");
+            for (double p = p_start, delta = (p_end - p_start) / N; p <= p_end; p += delta)
+            {
+                sb.AppendLine("{");
+                sb.AppendLine($"\"n\":{n},");
+                sb.AppendLine($"\"p\":{p},");
+                double avgColorUsed = Double.NaN;
+                for (int I = 0; I < samples; I++)
+                {
+                    var aRandomGraph = new ColoringGraph(KissMe.RandGraph(n, p));
+                    avgColorUsed = Double.IsNaN(avgColorUsed) ? 0 : avgColorUsed;
+                    avgColorUsed += aRandomGraph.ColorUsed();
+                }
+                avgColorUsed /= samples;
+                sb.AppendLine($"\"AvgColor\": {avgColorUsed}");
+                sb.AppendLine($"}} {(p == p_end ? ' ' : ',')}");
+            }
+            sb.AppendLine("]");
+
+            return sb.ToString();
+        }
+
         private static void Main(string[] args)
         {
             // IList<int>[] adjlist = KissMe.RandGraph(5, 1); for (int I = 0; I < adjlist.Length;
@@ -452,8 +482,6 @@ namespace HW4
             Clear();
             Write(stuff);
             ReadKey();
-
-
         }
 
         /// <summary>
@@ -483,44 +511,6 @@ namespace HW4
                 var res = g.ProduceStats();
                 WriteLine($"{n}, {p[I]}, {res[0]}, {res[2]}, {res[3]}, {res[4]}");
             }
-        }
-
-        /// <summary>
-        /// Generate a random graph and then use it to color it. 
-        /// 
-        /// This method investigate: 
-        /// How much color is needed on average for a graph with 1000
-        /// vertex, where p varies from 0.002 to 0.02 
-        /// </summary>
-        public static string RandomGraphColoringReport(
-            int n = 1000,
-            double p_start = 0.002,
-            double p_end = 0.02,
-            int N = 10, // Increment for edge density
-            int samples = 100
-            )
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("[");
-            for (double p = p_start, delta = (p_end - p_start) / N; p <= p_end; p += delta)
-            {
-                sb.AppendLine("{");
-                sb.AppendLine($"\"n\":{n},");
-                sb.AppendLine($"\"p\":{p},");
-                double avgColorUsed = Double.NaN;
-                for (int I = 0; I < samples; I++)
-                {
-                    var aRandomGraph = new ColoringGraph(KissMe.RandGraph(n, p));
-                    avgColorUsed = Double.IsNaN(avgColorUsed) ? 0 : avgColorUsed;
-                    avgColorUsed += aRandomGraph.ColorUsed();
-                }
-                avgColorUsed /= samples;
-                sb.AppendLine($"\"AvgColor\": {avgColorUsed}");
-                sb.AppendLine($"}} {(p == p_end ?' ':',')}");
-            }
-            sb.AppendLine("]");
-
-            return sb.ToString();
         }
     }
 }
