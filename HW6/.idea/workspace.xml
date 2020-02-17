@@ -14,8 +14,8 @@
       <file leaf-file-name="divide_conquer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/divide_conquer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="190" column="21" selection-start-line="190" selection-start-column="21" selection-end-line="190" selection-end-column="21" />
+            <state relative-caret-position="567">
+              <caret line="195" lean-forward="true" selection-start-line="195" selection-end-line="195" />
               <folding>
                 <element signature="e#0#182#1" />
                 <element signature="e#310#333#0" expanded="true" />
@@ -45,6 +45,8 @@
                 <element signature="e#2364#2772#0" />
                 <element signature="e#2567#2751#0" />
                 <element signature="e#2665#2694#0" />
+                <element signature="e#5069#5582#0" />
+                <element signature="e#2835#3028#0" />
                 <element signature="e#4620#4651#0" />
               </folding>
             </state>
@@ -153,7 +155,7 @@
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" weight="0.32915717" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.21867882" />
+      <window_info anchor="bottom" id="Terminal" weight="0.21867882" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997722" />
       <window_info id="Favorites" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -179,8 +181,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/divide_conquer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="190" column="21" selection-start-line="190" selection-start-column="21" selection-end-line="190" selection-end-column="21" />
+        <state relative-caret-position="567">
+          <caret line="195" lean-forward="true" selection-start-line="195" selection-end-line="195" />
           <folding>
             <element signature="e#0#182#1" />
             <element signature="e#310#333#0" expanded="true" />
@@ -210,6 +212,8 @@
             <element signature="e#2364#2772#0" />
             <element signature="e#2567#2751#0" />
             <element signature="e#2665#2694#0" />
+            <element signature="e#5069#5582#0" />
+            <element signature="e#2835#3028#0" />
             <element signature="e#4620#4651#0" />
           </folding>
         </state>

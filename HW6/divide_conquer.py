@@ -189,6 +189,7 @@ def run_codes_analysis():
     BestFit = polyval(c, X_data)
     plt.plot(X_data, Y_data, "ro")
     plt.plot(X_data, BestFit)
+    plt.title(f"The slope is: {c[0]}")
     plt.savefig("HW6Q5")
     print(f"Polyval results Show that the constant factor is: {c[0]}")
 
