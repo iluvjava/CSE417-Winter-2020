@@ -69,6 +69,40 @@ def greedy2(intervals):
     return Optimal
 
 
+def dp_solution(intervals):
+    """
+        This is a dynamic programming solution that maximizes the sum of the the
+        total interval length.
+        There won't be conflicts in the solution.
+
+    :param intervals:
+        A list of tuple representing the intervals.
+    :return:
+        A list of intervals without any intersection, and the sum of their length will be the
+        biggest possible.
+    """
+
+    intervals = deepcopy(intervals)
+    sorted(intervals, key=lambda x: x[1])
+    Unconflicted = [None]
+    ObjectiveVal = intervals[0][1] - intervals[0][0]
+    Optimal = [0]
+
+    for Interval, I in enumerate(intervals):
+        if I == 0:
+            continue
+        for J in range(I - 1, -1, -1):
+            if intervals[J][1] < Interval[0]:
+                Unconflicted.append(J)
+
+    intervals.pop(0)
+    for S, F in intervals:
+
+        pass
+
+
+
+
 def main():
     L = 4
     r = 4

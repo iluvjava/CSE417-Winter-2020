@@ -45,7 +45,7 @@ class CodesAnalysis:
         shuffle(res)
         return res
 
-    def regesiter(self, N):
+    def register(self, N):
         counter = [0]
         def k_th_inner(A: List[int], k):
             assert k >= 1 and k <= len(A), "Invalid k or array."
@@ -174,7 +174,7 @@ def run_codes_analysis():
     for I in range(repeatition):
         print("\r", end=f"{int((I/repeatition)*100)}%")
         for N in range(100, 10000, 100):
-            TestInstance.regesiter(N)
+            TestInstance.register(N)
     print()
     stats = TestInstance.analyze()
 
