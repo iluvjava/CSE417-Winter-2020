@@ -10,44 +10,46 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="divide_conquer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/divide_conquer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="195" lean-forward="true" selection-start-line="195" selection-end-line="195" />
+            <state relative-caret-position="336">
+              <caret line="149" selection-start-line="149" selection-end-line="149" />
               <folding>
-                <element signature="e#0#182#1" />
-                <element signature="e#310#333#0" expanded="true" />
-                <element signature="e#322#2675#0" />
-                <element signature="e#307#920#1" />
-                <element signature="e#973#977#0" />
-                <element signature="e#1126#1187#0" />
-                <element signature="e#1225#2137#0" />
-                <element signature="e#1284#1996#0" />
-                <element signature="e#1494#1626#0" />
-                <element signature="e#2188#2308#0" />
-                <element signature="e#2194#2706#0" />
-                <element signature="e#2189#2297#2" />
-                <element signature="e#2488#2640#0" />
-                <element signature="e#2532#2576#0" />
-                <element signature="e#2548#3454#0" />
-                <element signature="e#1015#1075#1" />
-                <element signature="e#1175#1270#0" />
-                <element signature="e#1373#1485#0" />
-                <element signature="e#1563#1789#0" />
-                <element signature="e#1610#1760#0" />
-                <element signature="e#1809#2297#0" />
-                <element signature="e#1854#2297#0" />
-                <element signature="e#2014#2276#0" />
-                <element signature="e#2094#2276#0" />
-                <element signature="e#2317#2802#0" />
-                <element signature="e#2364#2772#0" />
-                <element signature="e#2567#2751#0" />
-                <element signature="e#2665#2694#0" />
-                <element signature="e#5069#5582#0" />
-                <element signature="e#2835#3028#0" />
-                <element signature="e#4620#4651#0" />
+                <element signature="e#0#280#1" />
+                <element signature="e#473#2870#0" />
+                <element signature="e#473#1165#1" />
+                <element signature="e#1199#1236#0" />
+                <element signature="e#1274#1335#0" />
+                <element signature="e#1373#2311#0" />
+                <element signature="e#1440#2134#0" />
+                <element signature="e#1650#1785#0" />
+                <element signature="e#1928#2054#0" />
+                <element signature="e#2344#2870#0" />
+                <element signature="e#2344#2577#1" />
+                <element signature="e#2652#2804#0" />
+                <element signature="e#2696#2740#0" />
+                <element signature="e#2904#3810#0" />
+                <element signature="e#2904#3277#1" />
+                <element signature="e#3442#3537#0" />
+                <element signature="e#3640#3752#0" />
+                <element signature="e#3830#4056#0" />
+                <element signature="e#3877#4027#0" />
+                <element signature="e#4076#4564#0" />
+                <element signature="e#4121#4564#0" />
+                <element signature="e#4281#4543#0" />
+                <element signature="e#4361#4543#0" />
+                <element signature="e#4631#5039#0" />
+                <element signature="e#4834#5018#0" />
+                <element signature="e#4932#4961#0" />
+                <element signature="e#5102#5824#0" />
+                <element signature="e#5195#5321#0" />
+                <element signature="e#5514#5555#0" />
+                <element signature="e#5857#6050#0" />
+                <element signature="e#5885#6002#0" />
+                <element signature="e#6084#6373#0" />
+                <element signature="e#6084#6115#0" />
               </folding>
             </state>
           </provider>
@@ -68,7 +70,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
+    <option name="x" value="950" />
+    <option name="y" value="782" />
     <option name="width" value="1522" />
     <option name="height" value="2012" />
   </component>
@@ -77,7 +80,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -89,9 +91,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Python-Console-ANSI" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -146,25 +150,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="1013" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24983074" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24983074" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32915717" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.27790433" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Python Console" weight="0.32915717" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" weight="0.21867882" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.21867882" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997722" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -176,45 +179,182 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/divide_conquer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
+          <folding>
+            <element signature="e#0#280#1" />
+            <element signature="e#473#2870#0" />
+            <element signature="e#473#1165#1" />
+            <element signature="e#1199#1236#0" />
+            <element signature="e#1274#1335#0" />
+            <element signature="e#1373#2311#0" />
+            <element signature="e#1440#2134#0" />
+            <element signature="e#1650#1785#0" />
+            <element signature="e#1928#2054#0" />
+            <element signature="e#2344#2870#0" />
+            <element signature="e#2344#2577#1" />
+            <element signature="e#2652#2804#0" />
+            <element signature="e#2696#2740#0" />
+            <element signature="e#2904#3810#0" />
+            <element signature="e#2904#3277#1" />
+            <element signature="e#3442#3537#0" />
+            <element signature="e#3640#3752#0" />
+            <element signature="e#3830#4056#0" />
+            <element signature="e#3877#4027#0" />
+            <element signature="e#4076#4564#0" />
+            <element signature="e#4121#4564#0" />
+            <element signature="e#4281#4543#0" />
+            <element signature="e#4361#4543#0" />
+            <element signature="e#4631#5039#0" />
+            <element signature="e#4834#5018#0" />
+            <element signature="e#4932#4961#0" />
+            <element signature="e#5102#5824#0" />
+            <element signature="e#5195#5321#0" />
+            <element signature="e#5514#5555#0" />
+            <element signature="e#5857#6050#0" />
+            <element signature="e#5885#6002#0" />
+            <element signature="e#6084#6373#0" />
+            <element signature="e#6084#6115#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/HW6Q5.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/divide_conquer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
+        <state relative-caret-position="3654">
+          <caret line="174" column="55" lean-forward="true" selection-start-line="174" selection-start-column="55" selection-end-line="174" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#280#1" />
+            <element signature="e#473#2870#0" />
+            <element signature="e#473#1165#1" />
+            <element signature="e#1199#1236#0" />
+            <element signature="e#1274#1335#0" />
+            <element signature="e#1373#2311#0" />
+            <element signature="e#1440#2134#0" />
+            <element signature="e#1650#1785#0" />
+            <element signature="e#1928#2054#0" />
+            <element signature="e#2344#2870#0" />
+            <element signature="e#2344#2577#1" />
+            <element signature="e#2652#2804#0" />
+            <element signature="e#2696#2740#0" />
+            <element signature="e#2904#3810#0" />
+            <element signature="e#2904#3277#1" />
+            <element signature="e#3442#3537#0" />
+            <element signature="e#3640#3752#0" />
+            <element signature="e#3830#4056#0" />
+            <element signature="e#3877#4027#0" />
+            <element signature="e#4076#4564#0" />
+            <element signature="e#4121#4564#0" />
+            <element signature="e#4281#4543#0" />
+            <element signature="e#4361#4543#0" />
+            <element signature="e#4631#5039#0" />
+            <element signature="e#4834#5018#0" />
+            <element signature="e#4932#4961#0" />
+            <element signature="e#5102#5824#0" />
+            <element signature="e#5195#5321#0" />
+            <element signature="e#5514#5555#0" />
+            <element signature="e#5857#6050#0" />
+            <element signature="e#5885#6002#0" />
+            <element signature="e#6084#6373#0" />
+            <element signature="e#6084#6115#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HW6Q5.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/divide_conquer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4011">
           <caret line="195" lean-forward="true" selection-start-line="195" selection-end-line="195" />
           <folding>
-            <element signature="e#0#182#1" />
-            <element signature="e#310#333#0" expanded="true" />
-            <element signature="e#322#2675#0" />
-            <element signature="e#307#920#1" />
-            <element signature="e#973#977#0" />
-            <element signature="e#1126#1187#0" />
-            <element signature="e#1225#2137#0" />
-            <element signature="e#1284#1996#0" />
-            <element signature="e#1494#1626#0" />
-            <element signature="e#2188#2308#0" />
-            <element signature="e#2194#2706#0" />
-            <element signature="e#2189#2297#2" />
-            <element signature="e#2488#2640#0" />
-            <element signature="e#2532#2576#0" />
-            <element signature="e#2548#3454#0" />
-            <element signature="e#1015#1075#1" />
-            <element signature="e#1175#1270#0" />
-            <element signature="e#1373#1485#0" />
-            <element signature="e#1563#1789#0" />
-            <element signature="e#1610#1760#0" />
-            <element signature="e#1809#2297#0" />
-            <element signature="e#1854#2297#0" />
-            <element signature="e#2014#2276#0" />
-            <element signature="e#2094#2276#0" />
-            <element signature="e#2317#2802#0" />
-            <element signature="e#2364#2772#0" />
-            <element signature="e#2567#2751#0" />
-            <element signature="e#2665#2694#0" />
-            <element signature="e#5069#5582#0" />
-            <element signature="e#2835#3028#0" />
-            <element signature="e#4620#4651#0" />
+            <element signature="e#0#280#1" />
+            <element signature="e#473#2870#0" />
+            <element signature="e#473#1165#1" />
+            <element signature="e#1199#1236#0" />
+            <element signature="e#1274#1335#0" />
+            <element signature="e#1373#2311#0" />
+            <element signature="e#1440#2134#0" />
+            <element signature="e#1650#1785#0" />
+            <element signature="e#1928#2054#0" />
+            <element signature="e#2344#2870#0" />
+            <element signature="e#2344#2577#1" />
+            <element signature="e#2652#2804#0" />
+            <element signature="e#2696#2740#0" />
+            <element signature="e#2904#3810#0" />
+            <element signature="e#2904#3277#1" />
+            <element signature="e#3442#3537#0" />
+            <element signature="e#3640#3752#0" />
+            <element signature="e#3830#4056#0" />
+            <element signature="e#3877#4027#0" />
+            <element signature="e#4076#4564#0" />
+            <element signature="e#4121#4564#0" />
+            <element signature="e#4281#4543#0" />
+            <element signature="e#4361#4543#0" />
+            <element signature="e#4631#5039#0" />
+            <element signature="e#4834#5018#0" />
+            <element signature="e#4932#4961#0" />
+            <element signature="e#5102#5824#0" />
+            <element signature="e#5195#5321#0" />
+            <element signature="e#5514#5555#0" />
+            <element signature="e#5857#6050#0" />
+            <element signature="e#5885#6002#0" />
+            <element signature="e#6084#6373#0" />
+            <element signature="e#6084#6115#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HW6Q5.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HW6Q5.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/divide_conquer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="149" selection-start-line="149" selection-end-line="149" />
+          <folding>
+            <element signature="e#0#280#1" />
+            <element signature="e#473#2870#0" />
+            <element signature="e#473#1165#1" />
+            <element signature="e#1199#1236#0" />
+            <element signature="e#1274#1335#0" />
+            <element signature="e#1373#2311#0" />
+            <element signature="e#1440#2134#0" />
+            <element signature="e#1650#1785#0" />
+            <element signature="e#1928#2054#0" />
+            <element signature="e#2344#2870#0" />
+            <element signature="e#2344#2577#1" />
+            <element signature="e#2652#2804#0" />
+            <element signature="e#2696#2740#0" />
+            <element signature="e#2904#3810#0" />
+            <element signature="e#2904#3277#1" />
+            <element signature="e#3442#3537#0" />
+            <element signature="e#3640#3752#0" />
+            <element signature="e#3830#4056#0" />
+            <element signature="e#3877#4027#0" />
+            <element signature="e#4076#4564#0" />
+            <element signature="e#4121#4564#0" />
+            <element signature="e#4281#4543#0" />
+            <element signature="e#4361#4543#0" />
+            <element signature="e#4631#5039#0" />
+            <element signature="e#4834#5018#0" />
+            <element signature="e#4932#4961#0" />
+            <element signature="e#5102#5824#0" />
+            <element signature="e#5195#5321#0" />
+            <element signature="e#5514#5555#0" />
+            <element signature="e#5857#6050#0" />
+            <element signature="e#5885#6002#0" />
+            <element signature="e#6084#6373#0" />
+            <element signature="e#6084#6115#0" />
           </folding>
         </state>
       </provider>
