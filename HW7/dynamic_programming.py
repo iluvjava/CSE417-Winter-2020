@@ -4,6 +4,7 @@ name: hongda li
 class: cse 417 winter 2020.
 This file meant for demonstrating dynamic programing for interval scheduling.
 """
+__all__ = ["random_interval_generator", "greedy1", "greedy2", "dp_solution"]
 
 from random import random as rnd
 from copy import deepcopy
@@ -29,7 +30,6 @@ def random_interval_generator(n, L, r):
         Length = 1 + rnd()*r
         TupleList[I] = (Starting, Starting + Length)
     return TupleList
-
 
 
 def greedy1(intervals):
@@ -74,7 +74,8 @@ def dp_solution(intervals):
         This is a dynamic programming solution that maximizes the sum of the the
         total interval length.
         There won't be conflicts in the solution.
-
+    NOTE:
+        If 2 intervals are touching, they are viewed as conflicting.
     :param intervals:
         A list of tuple representing the intervals.
     :return:
@@ -84,23 +85,52 @@ def dp_solution(intervals):
 
     intervals = deepcopy(intervals)
     sorted(intervals, key=lambda x: x[1])
-    Unconflicted = [None]
-    ObjectiveVal = intervals[0][1] - intervals[0][0]
-    Optimal = [0]
+    Unconflicted = [0]
+    OptObjectiveVal = [0] # Objective Value
+    Optimal = [[]] # Solution, 2D array.
 
-    for Interval, I in enumerate(intervals):
+    # Establish unconflicted interval with largest finishing time for each of the interval.
+    for I, Interval in enumerate(intervals):
         if I == 0:
             continue
         for J in range(I - 1, -1, -1):
             if intervals[J][1] < Interval[0]:
-                Unconflicted.append(J)
+                Unconflicted.append(J + 1)
+                break
+            if J == 0 and intervals[0][1] > Interval[0]:
+                Unconflicted.append(0)
 
-    intervals.pop(0)
-    for S, F in intervals:
+    for I, Interval in enumerate(intervals):
+        OptimalInclude = OptObjectiveVal[Unconflicted[I]] + Interval[1] - Interval[0]
+        OptimalExclude = OptObjectiveVal[-1]
+        if OptimalExclude > OptimalInclude:
+            OptObjectiveVal.append(OptimalExclude)
+            Optimal.append(Optimal[-1])
+        else:
+            OptObjectiveVal.append(OptimalInclude)
+            Optimal.append(Optimal[Unconflicted[I]] + [Interval])
 
-        pass
+    return Optimal, OptObjectiveVal[-1]
 
 
+def test_dynamic_programming():
+    TestIntervals = [(0,4),(5,9),(3,8)]
+    OptimalSoln, OptimalValue = dp_solution(TestIntervals)
+    print(f"Optimal Soln is: {OptimalSoln}")
+    print(f"Optimal Value is: {OptimalValue}")
+
+    TestIntervals = [(0, 4), (5, 9), (9.5, 10), (11, 15)]
+    OptimalSoln, OptimalValue = dp_solution(TestIntervals)
+    print(f"Optimal Soln is: {OptimalSoln}")
+    print(f"Optimal Value is: {OptimalValue}")
+
+    TestIntervals = [(0, 4), (5, 9), (9.5, 10), (-6, 15)]
+    OptimalSoln, OptimalValue = dp_solution(TestIntervals)
+    print(f"Optimal Soln is: {OptimalSoln}")
+    print(f"Optimal Value is: {OptimalValue}")
+
+    print("Check above printout by eyes and hands to confirm correctness.")
+    pass
 
 
 def main():
@@ -108,7 +138,24 @@ def main():
     r = 4
     n = 10
     print(random_interval_generator(n, L, r))
+    test_dynamic_programming()
+    print("In theory, if the intervals are non overlapping, we should have the same results for all algorithms. ")
 
+    testintervals = list(zip(range(0, 100, 10), range(1, 101, 10)))
+    print(testintervals)
+
+    print(dp_solution(testintervals)[1])
+    g1 = greedy1(testintervals)
+    Sum = 0
+    for S,F in g1:
+        Sum += F - S
+    g1 = Sum
+    g2 = greedy2(testintervals)
+    Sum = 0
+    for S, F in g2:
+        Sum += F - S
+    g2 = Sum
+    print(f"g1: {g1}; g2: {g2}")
     pass
 
 if __name__ == "__main__":
