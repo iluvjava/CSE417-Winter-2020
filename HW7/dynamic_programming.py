@@ -156,7 +156,7 @@ def main():
         Sum += F - S
     g2 = Sum
     print(f"g1: {g1}; g2: {g2}")
-    pass
+
 
 if __name__ == "__main__":
     print("File has been run. ")
