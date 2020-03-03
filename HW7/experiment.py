@@ -40,6 +40,7 @@ class ComparingPerformance:
         return sum(g1)/len(g1), sum(g2)/len(g2), sum(dp)/len(dp)
 
     def get_results_list(self):
+        
         pass
 
 def main():
