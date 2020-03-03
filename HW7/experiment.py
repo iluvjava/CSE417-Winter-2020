@@ -6,11 +6,11 @@ Testing the performance for different algorithms in dynamic_programing.py
 """
 
 from dynamic_programming import *
+import matplotlib.pyplot as plt
 
 class ComparingPerformance:
 
     def __init__(self):
-
         self.__Greedy1ObjectiveValues = []
         self.__Greedy2ObjectiveValues = []
         self.__DynamicObjectiveValues = []
@@ -40,8 +40,13 @@ class ComparingPerformance:
         return sum(g1)/len(g1), sum(g2)/len(g2), sum(dp)/len(dp)
 
     def get_results_list(self):
+<<<<<<< HEAD
         
         pass
+=======
+        return list(zip(self.__Greedy1ObjectiveValues, self.__Greedy2ObjectiveValues, self.__DynamicObjectiveValues))
+
+>>>>>>> df8a3e43b6d36f75b14caf2d2a7cce9ef950e2ac
 
 def main():
     N = 50
@@ -51,6 +56,19 @@ def main():
         instance.runit()
         N -= 1
     print(instance.produce_avg_results())
+    ResultsList = instance.get_results_list()
+
+    for G1, G2, DP in ResultsList:
+        ItemsMap = {}
+        ItemsMap["Greedy Starting Time"] = G1
+        ItemsMap["Greedy Longest Length"] = G2
+        ItemsMap["Dynamic Programming"] = DP
+        names = list(ItemsMap.keys())
+        values = list(ItemsMap.values())
+        plt.scatter(names, values)
+
+    plt.savefig("fig")
+
 
 
 
